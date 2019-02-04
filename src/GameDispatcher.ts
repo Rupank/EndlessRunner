@@ -7,9 +7,9 @@ import StorageService from './services/StorageService';
 
 // GAME OBJECTS
 import Player from './objects/Player';
-import Enemies from './objects/Enemies';
 import Coins from './objects/Coins';
 import Background from './objects/Background';
+import Pipe from './objects/Pipe';
 
 // GAME VARIABLES
 import GameVars from './GameVars';
@@ -28,10 +28,9 @@ export default class GameDispatcher {
     public soundService: SoundService = null;
 
     public player: Player = null;
-    public enemies: Enemies = null;
     public coins: Coins = null;
     public background: Background = null;
-
+    public pipes: Pipe = null;
 
     /**
      * Initialize the game. Instanitate the game objects.
@@ -70,37 +69,42 @@ export default class GameDispatcher {
 
 
         // LAYERS AND GROUPS
-        this.gameVars.mapGroup = this.phaserGame.add.group();
-        this.gameVars.coinsGroup = this.phaserGame.add.group();
-        this.gameVars.coinsGroup.enableBody = true;
-        this.gameVars.enemiesGroup = this.phaserGame.add.group();
-        this.gameVars.enemiesGroup.enableBody = true;
+        // this.gameVars.coinsGroup = this.phaserGame.add.group();
+        // this.gameVars.coinsGroup.enableBody = true;
+        // this.gameVars.enemiesGroup = this.phaserGame.add.group();
+        // this.gameVars.enemiesGroup.enableBody = true;
         this.gameVars.playerGroup = this.phaserGame.add.group();
-        this.gameVars.uiGroup = this.phaserGame.add.group();
-        this.gameVars.uiGroup.fixedToCamera = true;
+        this.gameVars.pipeGroup = this.phaserGame.add.group();
+        this.gameVars.pipeGroup.createMultiple(20, Assets.Images.ImagesPipe.getName());
+        this.gameVars.pipeGroup.enableBody = true;
+        // this.gameVars.uiGroup = this.phaserGame.add.group();
+        // this.gameVars.uiGroup.fixedToCamera = true;
 
 
         // HUD
-        this.gameVars.coinUISprite = this.phaserGame.add.sprite(5, 2, Assets.Spritesheets.SpritesheetsCoin3232.getName(), 1, this.gameVars.uiGroup);
-        this.gameVars.mapUISprite = this.phaserGame.add.sprite(180, 2, Assets.Images.ImagesMapIcon.getName(), 1, this.gameVars.uiGroup);
+        // this.gameVars.coinUISprite = this.phaserGame.add.sprite(5, 2, Assets.Spritesheets.SpritesheetsCoin3232.getName(), 1, this.gameVars.uiGroup);
+        // this.gameVars.mapUISprite = this.phaserGame.add.sprite(180, 2, Assets.Images.ImagesMapIcon.getName(), 1, this.gameVars.uiGroup);
 
-        let style = { font: 'bold 32px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle' };
-        this.gameVars.coinText = this.phaserGame.add.text(32, 0, ' 0 ', style, this.gameVars.uiGroup);
-        this.gameVars.coinText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+        this.gameVars.pipeUISprite = this.phaserGame.add.sprite(100, 200, Assets.Images.ImagesPipe.getName(), 1);
 
-        this.gameVars.lvlText = this.phaserGame.add.text(200, 0, ` ${this.gameVars.level} `, style, this.gameVars.uiGroup);
-        this.gameVars.lvlText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+        // let style = { font: 'bold 32px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle' };
+        // this.gameVars.coinText = this.phaserGame.add.text(32, 0, ' 0 ', style, this.gameVars.uiGroup);
+        // this.gameVars.coinText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
+
+        // this.gameVars.lvlText = this.phaserGame.add.text(200, 0, ` ${this.gameVars.level} `, style, this.gameVars.uiGroup);
+        // this.gameVars.lvlText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 
 
         // INSTANITATE GAME OBJECTS
         this.soundService = new SoundService(this);
-        this.initMap();
+        // this.initMap();
         this.background = new Background(this);
         this.player = new Player(this);
 
 
         // KEY BINDINGS
         this.gameVars.spaceKey = this.phaserGame.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        this.gameVars.spaceKey.onDown.add(this.player.jump, this.player);
     }
 
 
@@ -110,46 +114,26 @@ export default class GameDispatcher {
     public initMap(): void {
         if (this.gameVars.map) {
             this.gameVars.map.destroy();
-            this.gameVars.tileBackgroundLayer.destroy();
-            this.gameVars.solidLayer.destroy();
         }
 
-        // set the collision tiles
-        this.gameVars.map = this.phaserGame.add.tilemap(`level${this.gameVars.level}`);
-        this.gameVars.map.setTileSize(32, 32);
-        this.gameVars.map.addTilesetImage('tiles', Assets.Images.ImagesTiles.getName());
-        this.gameVars.map.setCollisionBetween(3, 3, true, 'solid');
-        this.gameVars.map.setCollisionBetween(7, 9, true, 'solid');
-        this.gameVars.map.setCollisionBetween(13, 15, true, 'solid');
-        this.gameVars.map.setCollisionBetween(6, 6, true, 'solid');
-        this.gameVars.map.setCollisionBetween(12, 12, true, 'solid');
-        this.gameVars.map.setCollisionBetween(39, 39, true, 'solid');
-        this.gameVars.map.setCollisionBetween(19, 21, true, 'solid');
-        this.gameVars.map.setCollisionBetween(58, 60, true, 'solid');
-        this.gameVars.map.setCollisionBetween(64, 66, true, 'solid');
+        // this.gameVars.coinsGroup.removeAll();
+        // this.coins = new Coins(this);
+        // this.gameVars.enemiesGroup.removeAll();
+        // this.enemies = new Enemies(this);
 
-        // create layers
-        this.gameVars.tileBackgroundLayer = this.gameVars.map.createLayer('background', null, null, this.gameVars.mapGroup);
-        this.gameVars.solidLayer = this.gameVars.map.createLayer('solid', null, null, this.gameVars.mapGroup);
-        this.gameVars.solidLayer.resizeWorld();
+        this.gameVars.pipeGroup.removeAll();
+        // this.pipes = new Pipe(this);
 
-        this.gameVars.coinsGroup.removeAll();
-        this.coins = new Coins(this);
-        this.gameVars.enemiesGroup.removeAll();
-        this.enemies = new Enemies(this);
 
         this.gameVars.firstPause = true;
         this.gameVars.pause = false;
 
         this.gameVars.levelCoin = 0;
-        this.gameVars.coinText.setText(` ${this.gameVars.collectedCoin + this.gameVars.levelCoin} `);
-
-        this.gameVars.uiGroup.bringToTop(this.gameVars.tileBackgroundLayer);
+        // this.gameVars.coinText.setText(` ${this.gameVars.collectedCoin + this.gameVars.levelCoin} `);
 
         if (this.gameVars.options.musicEnabled !== null && this.gameVars.options.musicEnabled) {
             this.soundService.playRandomMusic();
         }
-
         this.removePendingEvents();
     }
 
@@ -162,22 +146,6 @@ export default class GameDispatcher {
         }
     }
 
-
-    /**
-     * Go to next level
-     */
-    public nextLevel() {
-        this.gameVars.level++;
-        if (this.gameVars.level > this.LEVEL_COUNT) {
-            this.gameVars.level = 1;
-        }
-
-        this.gameVars.firstPause = true;
-        this.player.reset();
-        this.gameVars.lvlText.setText(' ' + this.gameVars.level + ' ');
-    }
-
-
     /**
      * Update all game objects
      */
@@ -186,7 +154,7 @@ export default class GameDispatcher {
             return;
         }
         this.player.update();
-        this.enemies.update();
+        // this.enemies.update();
         this.background.update();
     }
 

@@ -7,7 +7,9 @@ import * as Assets from '../assets';
  *
  * All coin handler class in the game
  */
-export default class Coins extends GameObject {
+export default class Pipe extends GameObject {
+    private pipeTop: Phaser.Group = null;
+    private pipeBotton: Phaser.Group = null;
 
     /**
      * Create all coins from tile map, and initialize those
@@ -18,9 +20,10 @@ export default class Coins extends GameObject {
         super(gameDispatcher);
 
         // this.gameDispatcher.gameVars.map.createFromTiles(2, null, Assets.Spritesheets.SpritesheetsCoin3232.getName(), 'stuff', this.gameDispatcher.gameVars.coinsGroup);
-        this.gameDispatcher.gameVars.coinsGroup.callAll('animations.add', 'animations', 'spin', [0, 0, 1, 2, 3, 4, 4, 5, 6, 7, 8], 12, true);
-        this.gameDispatcher.gameVars.coinsGroup.callAll('animations.play', 'animations', 'spin');
-        this.gameDispatcher.gameVars.coinsGroup.callAll('disabled', false);
+
+        this.gameDispatcher.gameVars.pipeGroup.callAll('animations.add', 'animations', 'spin', [0, 0, 1, 2, 3, 4, 4, 5, 6, 7, 8], 12, true);
+        this.gameDispatcher.gameVars.pipeGroup.callAll('animations.play', 'animations', 'spin');
+        this.gameDispatcher.gameVars.pipeGroup.callAll('disabled', false);
     }
 
 }

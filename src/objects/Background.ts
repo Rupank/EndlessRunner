@@ -47,8 +47,8 @@ export default class Background extends GameObject {
      */
     public update(): void {
         if (this.mountainsBack) {
-            this.mountainsBack.tilePosition.x = this.phaserGame.camera.x * -0.05;
-            this.mountainsMid.tilePosition.x = this.phaserGame.camera.x * -0.2;
+            this.mountainsBack.tilePosition.x -= 0.05;
+            this.mountainsMid.tilePosition.x -= 0.2;
         }
     }
 }
