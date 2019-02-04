@@ -34,8 +34,8 @@ export default class Player extends GameObject {
         this.sprite = this.phaserGame.add.sprite(this.phaserGame.world.x + 200, this.phaserGame.world.height / 2, Assets.Spritesheets.SpritesheetsPlayer13232.getName());
         this.phaserGame.camera.follow(this.sprite);
         this.phaserGame.physics.arcade.enable(this.sprite);
-        this.sprite.body.gravity = 1000;
-        this.sprite.body.velocity.x = 100;
+        this.sprite.body.gravity.y = 1000;
+        this.sprite.body.velocity.y = 100;
         this.sprite.body.enable = true;
         this.sprite.animations.add('walkRight', [1, 2, 3], 8, true);
         this.sprite.animations.add('walkLeft', [8, 9, 10], 8, true);

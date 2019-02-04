@@ -31,7 +31,7 @@ export default class Main extends Phaser.State {
 
 
     private onClick(): void {
-        this.gameDispatcher.player.start();
+        this.gameDispatcher.player.jump();
     }
     public update(): void {
         // main update
