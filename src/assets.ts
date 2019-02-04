@@ -11,20 +11,10 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/bg2.png'); }
     }
-    export class ImagesLogo {
-        static getName(): string { return 'logo'; }
+    export class ImagesBlock {
+        static getName(): string { return 'block'; }
 
-        static getPNG(): string { return require('assets/images/logo.png'); }
-    }
-    export class ImagesMapIcon {
-        static getName(): string { return 'map_icon'; }
-
-        static getPNG(): string { return require('assets/images/map_icon.png'); }
-    }
-    export class ImagesPipe {
-        static getName(): string { return 'pipe'; }
-
-        static getPNG(): string { return require('assets/images/pipe.png'); }
+        static getPNG(): string { return require('assets/images/block.png'); }
     }
 }
 
@@ -39,32 +29,12 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
-    export class SpritesheetsEnemy3232 {
-        static getName(): string { return 'enemy.[32,32]'; }
+    export class SpritesheetsDude3248 {
+        static getName(): string { return 'dude.[32,48]'; }
 
-        static getPNG(): string { return require('assets/spritesheets/enemy.[32,32].png'); }
+        static getPNG(): string { return require('assets/spritesheets/dude.[32,48].png'); }
         static getFrameWidth(): number { return 32; }
-        static getFrameHeight(): number { return 32; }
-        static getFrameMax(): number { return -1; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsPlayer13232 {
-        static getName(): string { return 'player1.[32,32]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/player1.[32,32].png'); }
-        static getFrameWidth(): number { return 32; }
-        static getFrameHeight(): number { return 32; }
-        static getFrameMax(): number { return -1; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsPlayer23232 {
-        static getName(): string { return 'player2.[32,32]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/player2.[32,32].png'); }
-        static getFrameWidth(): number { return 32; }
-        static getFrameHeight(): number { return 32; }
+        static getFrameHeight(): number { return 48; }
         static getFrameMax(): number { return -1; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
@@ -98,39 +68,10 @@ export namespace Audio {
 
         static getMP3(): string { return require('assets/audio/music2.mp3'); }
     }
-    export class AudioMusic3 {
-        static getName(): string { return 'music3'; }
-
-        static getMP3(): string { return require('assets/audio/music3.mp3'); }
-    }
-    export class AudioMusic4 {
-        static getName(): string { return 'music4'; }
-
-        static getMP3(): string { return require('assets/audio/music4.mp3'); }
-    }
 }
 
 export namespace Audiosprites {
-    export class AudiospritesSfx {
-        static getName(): string { return 'sfx'; }
-
-        static getAC3(): string { return require('assets/audiosprites/sfx.ac3'); }
-        static getJSON(): string { return require('assets/audiosprites/sfx.json'); }
-        static getM4A(): string { return require('assets/audiosprites/sfx.m4a'); }
-        static getMP3(): string { return require('assets/audiosprites/sfx.mp3'); }
-        static getOGG(): string { return require('assets/audiosprites/sfx.ogg'); }
-    }
-    export namespace AudiospritesSfx {
-        export enum Sprites {
-            Bump = 'bump',
-            Coin = 'coin',
-            Die = 'die',
-            Jump = 'jump',
-            Kick = 'kick',
-            Pause = 'pause',
-            StageClear = 'stage_clear',
-        }
-    }
+    class IExistSoTypeScriptWillNotComplainAboutAnEmptyNamespace {}
 }
 
 export namespace GoogleWebFonts {
@@ -158,23 +99,10 @@ export namespace Text {
 }
 
 export namespace Scripts {
-    export class ScriptsBlurX {
-        static getName(): string { return 'BlurX'; }
-
-        static getJS(): string { return require('assets/scripts/BlurX.js'); }
-    }
-    export class ScriptsBlurY {
-        static getName(): string { return 'BlurY'; }
-
-        static getJS(): string { return require('assets/scripts/BlurY.js'); }
-    }
+    class IExistSoTypeScriptWillNotComplainAboutAnEmptyNamespace {}
 }
 export namespace Shaders {
-    export class ShadersPixelate {
-        static getName(): string { return 'pixelate'; }
-
-        static getFRAG(): string { return require('assets/shaders/pixelate.frag'); }
-    }
+    class IExistSoTypeScriptWillNotComplainAboutAnEmptyNamespace {}
 }
 export namespace Misc {
     class IExistSoTypeScriptWillNotComplainAboutAnEmptyNamespace {}

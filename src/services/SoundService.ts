@@ -9,7 +9,7 @@ import * as Assets from '../assets';
  */
 export default class SoundService extends GameObject {
 
-    private readonly BACKGROUND_MUSIC_COUNT: number = 4;
+    private readonly BACKGROUND_MUSIC_COUNT: number = 2;
 
     private sfx: Phaser.AudioSprite = null;
     private backgroundMusic: Phaser.Sound[] = [];
@@ -23,7 +23,6 @@ export default class SoundService extends GameObject {
      */
     constructor(gameDispatcher: GameDispatcher) {
         super(gameDispatcher);
-        this.sfx = this.phaserGame.add.audioSprite(Assets.Audiosprites.AudiospritesSfx.getName());
         for (let i = 1; i <= this.BACKGROUND_MUSIC_COUNT; i++) {
             this.backgroundMusic.push(this.phaserGame.add.audio(`music${i}`));
         }
@@ -57,24 +56,4 @@ export default class SoundService extends GameObject {
         this.phaserGame.sound.stopAll();
     }
 
-
-    /**
-     * Stop all sound and music, then play a random music if the music is enabled in the options menu
-     */
-    public stopAllThenPlayRandomMusic() {
-        this.stopAll();
-        if (this.gameDispatcher.gameVars.options.musicEnabled) {
-            this.playRandomMusic();
-        }
-    }
-
-
-    /**
-     * Play the specified sound
-     *
-     * @param name Sound name
-     */
-    public play(name: string) {
-        this.sfx.play(name);
-    }
 }

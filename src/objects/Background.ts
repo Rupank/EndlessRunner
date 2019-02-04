@@ -41,14 +41,18 @@ export default class Background extends GameObject {
         this.phaserGame.world.sendToBack(this.mountainsBack);
     }
 
+    public stopScrolling() {
+        this.mountainsBack.stopScroll();
+        this.mountainsMid.stopScroll();
+    }
 
     /**
      * Update the background (slowly move the layers)
      */
     public update(): void {
         if (this.mountainsBack) {
-            this.mountainsBack.tilePosition.x -= 0.05;
-            this.mountainsMid.tilePosition.x -= 0.2;
+            this.mountainsBack.tilePosition.x -= 0.2;
+            this.mountainsMid.tilePosition.x -= 0.5;
         }
     }
 }

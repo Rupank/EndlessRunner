@@ -69,38 +69,21 @@ export default class GameDispatcher {
 
 
         // LAYERS AND GROUPS
-        // this.gameVars.coinsGroup = this.phaserGame.add.group();
-        // this.gameVars.coinsGroup.enableBody = true;
-        // this.gameVars.enemiesGroup = this.phaserGame.add.group();
-        // this.gameVars.enemiesGroup.enableBody = true;
         this.gameVars.playerGroup = this.phaserGame.add.group();
         this.gameVars.pipeGroup = this.phaserGame.add.group();
-        this.gameVars.pipeGroup.createMultiple(20, Assets.Images.ImagesPipe.getName());
         this.gameVars.pipeGroup.enableBody = true;
-        // this.gameVars.uiGroup = this.phaserGame.add.group();
-        // this.gameVars.uiGroup.fixedToCamera = true;
 
+        let style = { font: 'bold 32px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle' };
 
-        // HUD
-        // this.gameVars.coinUISprite = this.phaserGame.add.sprite(5, 2, Assets.Spritesheets.SpritesheetsCoin3232.getName(), 1, this.gameVars.uiGroup);
-        // this.gameVars.mapUISprite = this.phaserGame.add.sprite(180, 2, Assets.Images.ImagesMapIcon.getName(), 1, this.gameVars.uiGroup);
-
-        this.gameVars.pipeUISprite = this.phaserGame.add.sprite(100, 200, Assets.Images.ImagesPipe.getName(), 1);
-
-        // let style = { font: 'bold 32px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle' };
-        // this.gameVars.coinText = this.phaserGame.add.text(32, 0, ' 0 ', style, this.gameVars.uiGroup);
-        // this.gameVars.coinText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
-
-        // this.gameVars.lvlText = this.phaserGame.add.text(200, 0, ` ${this.gameVars.level} `, style, this.gameVars.uiGroup);
-        // this.gameVars.lvlText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
-
+        this.gameVars.lvlText = this.phaserGame.add.text(this.phaserGame.world.width - 50, 0, '0', style);
+        this.gameVars.lvlText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 
         // INSTANITATE GAME OBJECTS
         this.soundService = new SoundService(this);
         // this.initMap();
         this.background = new Background(this);
         this.player = new Player(this);
-
+        this.pipes = new Pipe(this);
 
         // KEY BINDINGS
         this.gameVars.spaceKey = this.phaserGame.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -115,19 +98,7 @@ export default class GameDispatcher {
         if (this.gameVars.map) {
             this.gameVars.map.destroy();
         }
-
-        // this.gameVars.coinsGroup.removeAll();
-        // this.coins = new Coins(this);
-        // this.gameVars.enemiesGroup.removeAll();
-        // this.enemies = new Enemies(this);
-
-        this.gameVars.pipeGroup.removeAll();
-        // this.pipes = new Pipe(this);
-
-
-        this.gameVars.firstPause = true;
-        this.gameVars.pause = false;
-
+        this.coins = new Coins(this);
         this.gameVars.levelCoin = 0;
         // this.gameVars.coinText.setText(` ${this.gameVars.collectedCoin + this.gameVars.levelCoin} `);
 
@@ -154,7 +125,6 @@ export default class GameDispatcher {
             return;
         }
         this.player.update();
-        // this.enemies.update();
         this.background.update();
     }
 
