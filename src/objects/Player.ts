@@ -52,11 +52,11 @@ export default class Player extends GameObject {
     public hitPipe() {
         if (this.alive === false)
             return;
+        this.gameDispatcher.soundService.playHitSound();
         // Set the alive property of the bird to false
         this.alive = false;
         this.stopAnimation();
         this.sprite.play('turn');
-        this.gameDispatcher.background.stopScrolling();
         // Prevent new pipes from appearing
         this.phaserGame.time.events.remove(this.gameDispatcher.pipes.timer);
 
@@ -68,6 +68,7 @@ export default class Player extends GameObject {
     }
 
     public startGameOver(): void {
+        this.gameDispatcher.soundService.playDeathSound();
         this.reset();
         this.phaserGame.state.start('main');
     }
@@ -76,8 +77,8 @@ export default class Player extends GameObject {
         if (this.alive === false) {
             return;
         }
+        this.gameDispatcher.soundService.playJumpMusic();
         this.sprite.body.velocity.y = -350;
-        this.sprite.x += 1;
     }
 
     /**

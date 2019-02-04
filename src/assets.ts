@@ -58,15 +58,35 @@ export namespace Atlases {
 }
 
 export namespace Audio {
+    export class AudioDie {
+        static getName(): string { return 'die'; }
+
+        static getWAV(): string { return require('assets/audio/die.wav'); }
+    }
+    export class AudioHit {
+        static getName(): string { return 'hit'; }
+
+        static getWAV(): string { return require('assets/audio/hit.wav'); }
+    }
     export class AudioMusic1 {
         static getName(): string { return 'music1'; }
 
         static getMP3(): string { return require('assets/audio/music1.mp3'); }
     }
-    export class AudioMusic2 {
-        static getName(): string { return 'music2'; }
+    export class AudioPoint {
+        static getName(): string { return 'point'; }
 
-        static getMP3(): string { return require('assets/audio/music2.mp3'); }
+        static getWAV(): string { return require('assets/audio/point.wav'); }
+    }
+    export class AudioSwooshing {
+        static getName(): string { return 'swooshing'; }
+
+        static getWAV(): string { return require('assets/audio/swooshing.wav'); }
+    }
+    export class AudioWing {
+        static getName(): string { return 'wing'; }
+
+        static getWAV(): string { return require('assets/audio/wing.wav'); }
     }
 }
 

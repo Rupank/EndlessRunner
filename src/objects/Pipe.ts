@@ -47,6 +47,7 @@ export default class Pipe extends GameObject {
                 this.addOneBlock(this.phaserGame.world.width, i * 95);
         if (!firstTime) {
             this.gameDispatcher.gameVars.levelCoin += 1;
+            this.gameDispatcher.soundService.playPointsMusic();
         }
         this.gameDispatcher.gameVars.lvlText.setText(this.gameDispatcher.gameVars.levelCoin.toString());
         this.velocity *= 1.1;
