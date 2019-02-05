@@ -10,7 +10,7 @@ import Player from './objects/Player';
 import Coins from './objects/Coins';
 import Background from './objects/Background';
 import Pipe from './objects/Pipe';
-
+import GameOver from './objects/GameOver';
 // GAME VARIABLES
 import GameVars from './GameVars';
 
@@ -26,11 +26,12 @@ export default class GameDispatcher {
     public gameVars: GameVars = null;
     public phaserGame: Phaser.Game = null;
     public soundService: SoundService = null;
-
+    public startGameImage: Phaser.Sprite = null;
     public player: Player = null;
     public coins: Coins = null;
     public background: Background = null;
     public pipes: Pipe = null;
+    public gameOver: GameOver = null;
 
     /**
      * Initialize the game. Instanitate the game objects.
@@ -83,14 +84,17 @@ export default class GameDispatcher {
 
         // INSTANITATE GAME OBJECTS
         this.soundService = new SoundService(this);
-        // this.initMap();
         this.background = new Background(this);
-        this.player = new Player(this);
-        this.pipes = new Pipe(this);
 
-        // KEY BINDINGS
-        this.gameVars.spaceKey = this.phaserGame.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-        this.gameVars.spaceKey.onDown.add(this.player.jump, this.player);
+        if (!StorageService.sessionService.get('gameStartedAgain')) {
+            this.startGameImage = this.phaserGame.add.sprite(this.phaserGame.world.width / 2, this.phaserGame.world.height / 2, Assets.Images.ImagesGameStart.getName());
+            this.startGameImage.anchor.setTo(0.5);
+            this.startGameImage.inputEnabled = true;
+
+            this.startGameImage.events.onInputDown.add(this.startGameNow, this);
+        } else {
+            this.startGameNow();
+        }
     }
 
 
@@ -110,6 +114,20 @@ export default class GameDispatcher {
         this.removePendingEvents();
     }
 
+    public startGameNow() {
+        if (this.startGameImage) {
+            this.startGameImage.inputEnabled = false;
+            this.startGameImage.destroy();
+        }
+        this.player = new Player(this);
+        this.pipes = new Pipe(this);
+        this.gameOver = new GameOver(this);
+        // KEY BINDINGS
+        this.gameVars.spaceKey = this.phaserGame.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+        this.gameVars.spaceKey.onDown.add(this.player.jump, this.player);
+        this.phaserGame.input.onTap.add(this.player.jump, this.player);
+    }
+
     /**
      * Remove all pending events
      */
@@ -123,10 +141,12 @@ export default class GameDispatcher {
      * Update all game objects
      */
     public update() {
-        if (this.gameVars.pause || !this.player) {
+        if (this.gameVars.pause) {
             return;
         }
-        this.player.update();
+        if (this.player) {
+            this.player.update();
+        }
         this.background.update();
     }
 

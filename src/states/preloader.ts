@@ -1,5 +1,6 @@
 import * as Assets from '../assets';
 import * as AssetUtils from '../utils/assetUtils';
+import StorageService from '../services/StorageService';
 
 export default class Preloader extends Phaser.State {
     private preloadBarSprite: Phaser.Sprite = null;
@@ -42,6 +43,8 @@ export default class Preloader extends Phaser.State {
      * Start the main state
      */
     private loadMain(): void {
+        sessionStorage.clear();
+        StorageService.sessionService.set('gameStartedAgain', false);
         this.game.state.start('main'); // go to the main state
     }
 }

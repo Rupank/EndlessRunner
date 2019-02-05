@@ -48,7 +48,7 @@ module.exports = {
             path.join(__dirname, 'dist')
         ]),
         new HtmlWebpackPlugin({
-            title: 'Great Run',
+            title: 'Catch Mangoes',
             template: path.join(__dirname, 'templates/index.ejs')
         })
     ],

@@ -32,11 +32,11 @@ module.exports = {
             'DEBUG': false,
 
             // Do not modify these manually, you may break things...
-            'DEFAULT_GAME_WIDTH': /*[[DEFAULT_GAME_WIDTH*/640/*DEFAULT_GAME_WIDTH]]*/,
-            'DEFAULT_GAME_HEIGHT': /*[[DEFAULT_GAME_HEIGHT*/500/*DEFAULT_GAME_HEIGHT]]*/,
-            'MAX_GAME_WIDTH': /*[[MAX_GAME_WIDTH*/640/*MAX_GAME_WIDTH]]*/,
-            'MAX_GAME_HEIGHT': /*[[MAX_GAME_HEIGHT*/500/*MAX_GAME_HEIGHT]]*/,
-            'SCALE_MODE': JSON.stringify(/*[[SCALE_MODE*/'NO_SCALE'/*SCALE_MODE]]*/),
+            'DEFAULT_GAME_WIDTH': /*[[DEFAULT_GAME_WIDTH*/ 640 /*DEFAULT_GAME_WIDTH]]*/ ,
+            'DEFAULT_GAME_HEIGHT': /*[[DEFAULT_GAME_HEIGHT*/ 500 /*DEFAULT_GAME_HEIGHT]]*/ ,
+            'MAX_GAME_WIDTH': /*[[MAX_GAME_WIDTH*/ 640 /*MAX_GAME_WIDTH]]*/ ,
+            'MAX_GAME_HEIGHT': /*[[MAX_GAME_HEIGHT*/ 500 /*MAX_GAME_HEIGHT]]*/ ,
+            'SCALE_MODE': JSON.stringify( /*[[SCALE_MODE*/ 'NO_SCALE' /*SCALE_MODE]]*/ ),
 
             // The items below most likely the ones you should be modifying
             'GOOGLE_WEB_FONTS': JSON.stringify([ // Add or remove entries in this array to change which fonts are loaded
@@ -56,7 +56,7 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            title: 'Great Run',
+            title: 'Catch Mangoes',
             template: path.join(__dirname, 'templates/index.ejs')
         })
     ],
@@ -72,15 +72,33 @@ module.exports = {
         }
     },
     module: {
-        rules: [
-            { test: /\.ts$/, enforce: 'pre', loader: 'tslint-loader' },
+        rules: [{
+                test: /\.ts$/,
+                enforce: 'pre',
+                loader: 'tslint-loader'
+            },
 
-            { test: /assets(\/|\\)/, loader: 'file-loader?name=assets/[hash].[ext]' },
-            { test: /pixi\.js$/, loader: 'expose-loader?PIXI' },
-            { test: /phaser-split\.js$/, loader: 'expose-loader?Phaser' },
-            { test: /p2\.js$/, loader: 'expose-loader?p2' },
-            { test: /\.ts$/, loader: 'ts-loader', exclude: '/node_modules/' }
+            {
+                test: /assets(\/|\\)/,
+                loader: 'file-loader?name=assets/[hash].[ext]'
+            },
+            {
+                test: /pixi\.js$/,
+                loader: 'expose-loader?PIXI'
+            },
+            {
+                test: /phaser-split\.js$/,
+                loader: 'expose-loader?Phaser'
+            },
+            {
+                test: /p2\.js$/,
+                loader: 'expose-loader?p2'
+            },
+            {
+                test: /\.ts$/,
+                loader: 'ts-loader',
+                exclude: '/node_modules/'
+            }
         ]
     }
 };
-

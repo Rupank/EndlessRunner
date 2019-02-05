@@ -25,14 +25,8 @@ export default class Main extends Phaser.State {
         // initialize game objects
         this.gameDispatcher = new GameDispatcher(this.game);
         this.gui = new GUI(this.game, this.gameDispatcher);
-
-        this.game.input.onTap.add(this.onClick, this);
     }
 
-
-    private onClick(): void {
-        this.gameDispatcher.player.jump();
-    }
     public update(): void {
         // main update
         this.gameDispatcher.update();

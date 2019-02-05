@@ -16,6 +16,16 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/crate.png'); }
     }
+    export class ImagesGameOverBG {
+        static getName(): string { return 'gameOverBG'; }
+
+        static getPNG(): string { return require('assets/images/gameOverBG.png'); }
+    }
+    export class ImagesGameStart {
+        static getName(): string { return 'gameStart'; }
+
+        static getPNG(): string { return require('assets/images/gameStart.png'); }
+    }
     export class ImagesMango {
         static getName(): string { return 'mango'; }
 
@@ -89,7 +99,18 @@ export namespace GoogleWebFonts {
 }
 
 export namespace CustomWebFonts {
-    class IExistSoTypeScriptWillNotComplainAboutAnEmptyNamespace {}
+    export class FontsGameOver {
+        static getName(): string { return 'game_over'; }
+
+        static getFamily(): string { return 'game_over'; }
+
+        static getCSS(): string { return require('!file-loader?name=assets/fonts/[name].[ext]!assets/fonts/game_over.css'); }
+        static getEOT(): string { return require('!file-loader?name=assets/fonts/[name].[ext]!assets/fonts/game_over.eot'); }
+        static getSVG(): string { return require('!file-loader?name=assets/fonts/[name].[ext]!assets/fonts/game_over.svg'); }
+        static getTTF(): string { return require('!file-loader?name=assets/fonts/[name].[ext]!assets/fonts/game_over.ttf'); }
+        static getWOFF(): string { return require('!file-loader?name=assets/fonts/[name].[ext]!assets/fonts/game_over.woff'); }
+        static getWOFF2(): string { return require('!file-loader?name=assets/fonts/[name].[ext]!assets/fonts/game_over.woff2'); }
+    }
 }
 
 export namespace BitmapFonts {

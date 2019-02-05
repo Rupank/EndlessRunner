@@ -1,21 +1,3 @@
-/**
- *
- * Great Run - Dora the explorer platformer game for the little children's
- *
- * @author  Robert Girhiny <robcaa@gmail.com> [robertgirhiny.com]
- *
- * Run/Build instructions:
- *      - npm run server:dev
- *      - npm run assets
- *      - npm run build:dist
- *      - npm run electron:pack:dist -- --platform win32 --arch=ia32
- *
- * See also:
- *      https://github.com/rroylance/phaser-npm-webpack-typescript-starter-project
- *      https://www.mapeditor.org/
- */
-
-
 import 'p2';
 import 'pixi';
 import 'phaser';
@@ -30,7 +12,7 @@ import * as Assets from './assets';
 
 class App extends Phaser.Game {
     constructor(config: Phaser.IGameConfig) {
-        super (config);
+        super(config);
 
         this.state.add('boot', Boot);
         this.state.add('preloader', Preloader);

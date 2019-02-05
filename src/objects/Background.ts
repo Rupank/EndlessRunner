@@ -51,8 +51,8 @@ export default class Background extends GameObject {
      */
     public update(): void {
         if (this.mountainsBack) {
-            this.mountainsBack.tilePosition.x -= 0.2;
-            this.mountainsMid.tilePosition.x -= 0.5;
+            this.mountainsBack.tilePosition.x -= 0.5;
+            this.mountainsMid.tilePosition.x -= 1;
         }
     }
 }
