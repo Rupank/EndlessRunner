@@ -21,30 +21,17 @@ export default class GameVars {
     /** Space key binding */
     public spaceKey: Phaser.Key;
 
-
-
-    /** Group of the map elements */
-    public mapGroup: Phaser.Group = null;
     /** Group of the coins */
     public coinsGroup: Phaser.Group = null;
-    /** Group of the enemies */
-    public enemiesGroup: Phaser.Group = null;
     /** Group of the player */
     public playerGroup: Phaser.Group = null;
     /** Group of the pipes */
     public pipeGroup: Phaser.Group = null;
-
-    /** Group of the UI */
-    public uiGroup: Phaser.Group = null;
-
-
+    /** Group of the mangoes */
+    public mangoGroup: Phaser.Group = null;
 
     /** HUD pipe sprite */
     public pipeUISprite: Phaser.Sprite = null;
-    /** HUD coin sprite */
-    public coinUISprite: Phaser.Sprite = null;
-    /** HUD map sprite */
-    public mapUISprite: Phaser.Sprite = null;
     /** HUD collected coins displayer text object  */
     public coinText: Phaser.Text = null;
     /** HUD current level displayer text object */

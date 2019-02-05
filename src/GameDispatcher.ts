@@ -72,6 +72,9 @@ export default class GameDispatcher {
         this.gameVars.playerGroup = this.phaserGame.add.group();
         this.gameVars.pipeGroup = this.phaserGame.add.group();
         this.gameVars.pipeGroup.enableBody = true;
+        this.phaserGame.physics.arcade.enable(this.gameVars.pipeGroup);
+        this.gameVars.mangoGroup = this.phaserGame.add.group();
+        this.gameVars.mangoGroup.enableBody = true;
 
         let style = { font: 'bold 32px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle' };
 

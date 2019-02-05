@@ -27,7 +27,7 @@ export default class Player extends GameObject {
         this.sprite.body.velocity.y = 100;
         this.sprite.body.enable = true;
         this.sprite.animations.add('left', [1, 2, 3, 4], 8, true);
-        this.sprite.animations.add('turn', [5], 8, true);
+        this.sprite.animations.add('turn', [4], 8, true);
         this.sprite.animations.add('right', [6, 7, 8, 9], 8, true);
         this.sprite.body.collideWorldBounds = true;
         this.sprite.scale.setTo(1.5, 1.5);
@@ -46,25 +46,42 @@ export default class Player extends GameObject {
         if (this.sprite.y < 0 || this.sprite.y > this.phaserGame.world.height) {
             this.startGameOver();
         }
-        this.phaserGame.physics.arcade.overlap(this.sprite, this.gameDispatcher.gameVars.pipeGroup, this.hitPipe, null, this);
+        this.phaserGame.physics.arcade.collide(this.sprite, this.gameDispatcher.gameVars.pipeGroup, this.hitPipe, null, this);
+        this.phaserGame.physics.arcade.overlap(this.sprite, this.gameDispatcher.gameVars.mangoGroup, this.hitMango, null, this);
     }
 
     public hitPipe() {
         if (this.alive === false)
             return;
         this.gameDispatcher.soundService.playHitSound();
-        // Set the alive property of the bird to false
         this.alive = false;
         this.stopAnimation();
         this.sprite.play('turn');
+        this.sprite.body.velocity.y = this.sprite.body.velocity.x = 0;
+
         // Prevent new pipes from appearing
         this.phaserGame.time.events.remove(this.gameDispatcher.pipes.timer);
-
         // Go through all the pipes, and stop their movement
         this.gameDispatcher.gameVars.pipeGroup.forEach((p) => {
             p.body.velocity.x = 0;
         }, this);
-        this.startGameOver();
+        this.gameDispatcher.gameVars.mangoGroup.forEach((m) => {
+            m.body.velocity.x = 0;
+        }, this);
+        setTimeout(() => {
+            this.startGameOver();
+        }, 500);
+    }
+
+    public hitMango(player, mango) {
+        if (this.alive === false)
+            return;
+        mango.destroy();
+        this.gameDispatcher.gameVars.levelCoin += 1;
+        this.gameDispatcher.soundService.playPointsMusic();
+        this.gameDispatcher.gameVars.lvlText.setText(this.gameDispatcher.gameVars.levelCoin.toString());
+
+        // Set the alive property of the bird to false
     }
 
     public startGameOver(): void {
