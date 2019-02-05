@@ -44,6 +44,16 @@ export namespace Spritesheets {
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }
     }
+    export class SpritesheetsMonkey3232 {
+        static getName(): string { return 'monkey.[32,32]'; }
+
+        static getPNG(): string { return require('assets/spritesheets/monkey.[32,32].png'); }
+        static getFrameWidth(): number { return 32; }
+        static getFrameHeight(): number { return 32; }
+        static getFrameMax(): number { return -1; }
+        static getMargin(): number { return 0; }
+        static getSpacing(): number { return 0; }
+    }
 }
 
 export namespace Atlases {

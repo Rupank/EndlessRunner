@@ -20,17 +20,18 @@ export default class Player extends GameObject {
     constructor(gameDispatcher: GameDispatcher) {
         super(gameDispatcher);
 
-        this.sprite = this.phaserGame.add.sprite(this.phaserGame.world.x + this.phaserGame.world.width / 2, this.phaserGame.world.height / 2, Assets.Spritesheets.SpritesheetsDude3248.getName());
+        // this.sprite = this.phaserGame.add.sprite(this.phaserGame.world.x + this.phaserGame.world.width / 2, this.phaserGame.world.height / 2, Assets.Spritesheets.SpritesheetsDude3248.getName());
+        this.sprite = this.phaserGame.add.sprite(this.phaserGame.world.x + this.phaserGame.world.width / 2, this.phaserGame.world.height / 2, Assets.Spritesheets.SpritesheetsMonkey3232.getName());
         this.phaserGame.camera.follow(this.sprite);
         this.phaserGame.physics.arcade.enable(this.sprite);
         this.sprite.body.gravity.y = 1000;
         this.sprite.body.velocity.y = 100;
-        this.sprite.body.enable = true;
         this.sprite.animations.add('left', [1, 2, 3, 4], 8, true);
-        this.sprite.animations.add('turn', [4], 8, true);
-        this.sprite.animations.add('right', [6, 7, 8, 9], 8, true);
+        this.sprite.animations.add('turn', [6], 8, true);
+        this.sprite.animations.add('grab', [5, 3], 8, false);
+        this.sprite.animations.add('right', [0, 1, 2, 3], 8, true);
         this.sprite.body.collideWorldBounds = true;
-        this.sprite.scale.setTo(1.5, 1.5);
+        this.sprite.scale.setTo(1.7, 1.7);
         this.sprite.play('right');
         this.alive = true;
         this.reset();
@@ -76,11 +77,14 @@ export default class Player extends GameObject {
     public hitMango(player, mango) {
         if (this.alive === false)
             return;
+        this.sprite.animations.play('grab');
         mango.destroy();
         this.gameDispatcher.gameVars.levelCoin += 1;
         this.gameDispatcher.soundService.playPointsMusic();
         this.gameDispatcher.gameVars.lvlText.setText(this.gameDispatcher.gameVars.levelCoin.toString());
-
+        setTimeout(() => {
+            this.sprite.animations.play('right');
+        }, 500);
         // Set the alive property of the bird to false
     }
 
