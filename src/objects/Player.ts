@@ -20,7 +20,6 @@ export default class Player extends GameObject {
     constructor(gameDispatcher: GameDispatcher) {
         super(gameDispatcher);
 
-        // this.sprite = this.phaserGame.add.sprite(this.phaserGame.world.x + this.phaserGame.world.width / 2, this.phaserGame.world.height / 2, Assets.Spritesheets.SpritesheetsDude3248.getName());
         this.sprite = this.phaserGame.add.sprite(this.phaserGame.world.x + this.phaserGame.world.width / 2, this.phaserGame.world.height / 2, Assets.Spritesheets.SpritesheetsMonkey3232.getName());
         this.phaserGame.camera.follow(this.sprite);
         this.phaserGame.physics.arcade.enable(this.sprite);

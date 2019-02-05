@@ -22,13 +22,14 @@ export default class Pipe extends GameObject {
     }
 
     public addOneBlock(x, y) {
-        let blockSprite = this.phaserGame.add.sprite(x, y, Assets.Images.ImagesBlock.getName());
+        let blockSprite = this.phaserGame.add.sprite(x, y, Assets.Images.ImagesCrate.getName());
         this.gameDispatcher.gameVars.pipeGroup.add(blockSprite);
         this.phaserGame.physics.arcade.enable(blockSprite);
         blockSprite.body.immovable = true;
         blockSprite.body.velocity.x = this.velocity;
         this.gameDispatcher.gameVars.pipeGroup.add(blockSprite);
-
+        // blockSprite.tint = 0x00ff00;
+        blockSprite.tint = 0xdac586;
         // Automatically kill the pipe when it's no longer visible
         blockSprite.checkWorldBounds = true;
         blockSprite.outOfBoundsKill = true;
@@ -52,7 +53,7 @@ export default class Pipe extends GameObject {
         let yPos = this.phaserGame.rnd.integerInRange(Math.min(...array), Math.max(...array));
         this.addMangoOnScreen(this.phaserGame.world.width, yPos);
 
-        this.velocity *= 1.05;
+        this.velocity *= 1.06;
     }
 
     public addMangoOnScreen(x, y) {

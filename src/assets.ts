@@ -11,10 +11,10 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/bg2.png'); }
     }
-    export class ImagesBlock {
-        static getName(): string { return 'block'; }
+    export class ImagesCrate {
+        static getName(): string { return 'crate'; }
 
-        static getPNG(): string { return require('assets/images/block.png'); }
+        static getPNG(): string { return require('assets/images/crate.png'); }
     }
     export class ImagesMango {
         static getName(): string { return 'mango'; }
@@ -24,26 +24,6 @@ export namespace Images {
 }
 
 export namespace Spritesheets {
-    export class SpritesheetsCoin3232 {
-        static getName(): string { return 'coin.[32,32]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/coin.[32,32].png'); }
-        static getFrameWidth(): number { return 32; }
-        static getFrameHeight(): number { return 32; }
-        static getFrameMax(): number { return -1; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
-    export class SpritesheetsDude3248 {
-        static getName(): string { return 'dude.[32,48]'; }
-
-        static getPNG(): string { return require('assets/spritesheets/dude.[32,48].png'); }
-        static getFrameWidth(): number { return 32; }
-        static getFrameHeight(): number { return 48; }
-        static getFrameMax(): number { return -1; }
-        static getMargin(): number { return 0; }
-        static getSpacing(): number { return 0; }
-    }
     export class SpritesheetsMonkey3232 {
         static getName(): string { return 'monkey.[32,32]'; }
 
@@ -92,11 +72,6 @@ export namespace Audio {
         static getName(): string { return 'point'; }
 
         static getWAV(): string { return require('assets/audio/point.wav'); }
-    }
-    export class AudioSwooshing {
-        static getName(): string { return 'swooshing'; }
-
-        static getWAV(): string { return require('assets/audio/swooshing.wav'); }
     }
     export class AudioWing {
         static getName(): string { return 'wing'; }

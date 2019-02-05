@@ -76,9 +76,9 @@ export default class GameDispatcher {
         this.gameVars.mangoGroup = this.phaserGame.add.group();
         this.gameVars.mangoGroup.enableBody = true;
 
-        let style = { font: 'bold 32px Arial', fill: '#fff', boundsAlignH: 'center', boundsAlignV: 'middle' };
+        let style = { font: 'bold 32px Arial', fill: '#ffff33', boundsAlignH: 'center', boundsAlignV: 'middle' };
 
-        this.gameVars.lvlText = this.phaserGame.add.text(this.phaserGame.world.width - 50, 0, '0', style);
+        this.gameVars.lvlText = this.phaserGame.add.text(this.phaserGame.world.width - 40, 0, '0', style);
         this.gameVars.lvlText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 
         // INSTANITATE GAME OBJECTS
@@ -103,7 +103,6 @@ export default class GameDispatcher {
         }
         this.coins = new Coins(this);
         this.gameVars.levelCoin = 0;
-        // this.gameVars.coinText.setText(` ${this.gameVars.collectedCoin + this.gameVars.levelCoin} `);
 
         if (this.gameVars.options.musicEnabled !== null && this.gameVars.options.musicEnabled) {
             this.soundService.playRandomMusic();
