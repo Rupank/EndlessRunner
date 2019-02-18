@@ -13,7 +13,7 @@ function createWindow () {
     mainWindow = new BrowserWindow({
         fullscreen: false,
         fullscreenable: true,
-        height: /*[[DEFAULT_GAME_HEIGHT*/480/*DEFAULT_GAME_HEIGHT]]*/, // This is changed via the setupGameSize script, change DEFAULT_GAME_HEIGHT to MAX_GAME_HEIGHT if you'd rather use the full size instead of only the safe zone size.
+        height: /*[[DEFAULT_GAME_HEIGHT*/500/*DEFAULT_GAME_HEIGHT]]*/, // This is changed via the setupGameSize script, change DEFAULT_GAME_HEIGHT to MAX_GAME_HEIGHT if you'd rather use the full size instead of only the safe zone size.
         maximizable: true,
         resizeable: true,
         show: false,

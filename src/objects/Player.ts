@@ -21,17 +21,18 @@ export default class Player extends GameObject {
     constructor(gameDispatcher: GameDispatcher) {
         super(gameDispatcher);
 
-        this.sprite = this.phaserGame.add.sprite(this.phaserGame.world.x + this.phaserGame.world.width / 2, this.phaserGame.world.height / 2, Assets.Spritesheets.SpritesheetsMonkey3232.getName());
+        this.sprite = this.phaserGame.add.sprite(this.phaserGame.world.x + this.phaserGame.world.width / 2, this.phaserGame.world.height / 2, Assets.Spritesheets.SpritesheetsPlayer267267.getName());
+        this.sprite.scale.setTo(0.3, 0.3);
         this.phaserGame.camera.follow(this.sprite);
         this.phaserGame.physics.arcade.enable(this.sprite);
         this.sprite.body.gravity.y = 1000;
         this.sprite.body.velocity.y = 100;
-        this.sprite.animations.add('left', [1, 2, 3, 4], 8, true);
-        this.sprite.animations.add('turn', [6], 8, true);
-        this.sprite.animations.add('grab', [5, 3], 8, false);
-        this.sprite.animations.add('right', [0, 1, 2, 3], 8, true);
+        this.sprite.anchor.setTo(0.5, 0);
+        this.sprite.animations.add('turn', [0, 1, 2, 3], 8, false);
+        this.sprite.animations.add('grab', [10], 8, false);
+        this.sprite.animations.add('right', [8, 9, 10], 8, true);
+        this.sprite.animations.add('jump', [4, 5, 6, 8], 8, false);
         this.sprite.body.collideWorldBounds = true;
-        this.sprite.scale.setTo(1.7, 1.7);
         this.sprite.play('right');
         this.alive = true;
         this.reset();
@@ -56,7 +57,7 @@ export default class Player extends GameObject {
         this.stopAnimation();
         this.sprite.play('turn');
         this.sprite.body.velocity.y = this.sprite.body.velocity.x = 0;
-        this.gameDispatcher.gameOver.scoreText.setText('Score : ' + this.gameDispatcher.gameVars.levelCoin.toString());
+        this.gameDispatcher.gameOver.scoreText.setText(' : ' + this.gameDispatcher.gameVars.levelCoin.toString());
         let highScore = StorageService.sessionService.get('highScore');
         if (!highScore) {
             highScore = 0;
@@ -67,7 +68,7 @@ export default class Player extends GameObject {
             highScore = this.gameDispatcher.gameVars.levelCoin;
             StorageService.sessionService.set('highScore', highScore);
         }
-        this.gameDispatcher.gameOver.highScoreText.setText('HighScore : ' + highScore.toString());
+        this.gameDispatcher.gameOver.highScoreText.setText(' : ' + highScore.toString());
         this.alive = false;
 
         // Prevent new pipes from appearing
@@ -92,9 +93,10 @@ export default class Player extends GameObject {
         // this.sprite.body.enable = false;
         this.gameDispatcher.soundService.playPointsMusic();
         this.gameDispatcher.gameVars.lvlText.setText(this.gameDispatcher.gameVars.levelCoin.toString());
-        // this.gameDispatcher
         setTimeout(() => {
-            this.sprite.animations.play('right');
+            if (this.alive) {
+                this.sprite.animations.play('right');
+            }
         }, 500);
         // Set the alive property of the bird to false
     }
@@ -108,6 +110,7 @@ export default class Player extends GameObject {
         if (!this.alive) {
             return;
         }
+        this.sprite.play('jump');
         this.gameDispatcher.soundService.playJumpMusic();
         this.sprite.body.velocity.y = -350;
     }
@@ -119,8 +122,6 @@ export default class Player extends GameObject {
         this.sprite.body!.velocity.x = 0;
         this.gameDispatcher.soundService.stopAll();
         this.sprite.body!.velocity.y = 0;
-        // this.sprite.reset(32, 0);
-        this.sprite.frame = 0;
         this.sprite.body!.enable = true;
         this.gameDispatcher.gameVars.levelCoin = 0;
         this.gameDispatcher.initMap();

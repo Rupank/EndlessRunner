@@ -30,6 +30,10 @@ export default class GameVars {
     /** Group of the mangoes */
     public mangoGroup: Phaser.Group = null;
 
+    public bg2Speed = 0.2;
+    public bg3Speed = 0.3;
+    public bg4Speed = 1;
+
     /** HUD pipe sprite */
     public pipeUISprite: Phaser.Sprite = null;
     /** HUD collected coins displayer text object  */

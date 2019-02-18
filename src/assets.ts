@@ -11,6 +11,16 @@ export namespace Images {
 
         static getPNG(): string { return require('assets/images/bg2.png'); }
     }
+    export class ImagesBg3 {
+        static getName(): string { return 'bg3'; }
+
+        static getPNG(): string { return require('assets/images/bg3.png'); }
+    }
+    export class ImagesBg4 {
+        static getName(): string { return 'bg4'; }
+
+        static getPNG(): string { return require('assets/images/bg4.png'); }
+    }
     export class ImagesCrate {
         static getName(): string { return 'crate'; }
 
@@ -34,12 +44,12 @@ export namespace Images {
 }
 
 export namespace Spritesheets {
-    export class SpritesheetsMonkey3232 {
-        static getName(): string { return 'monkey.[32,32]'; }
+    export class SpritesheetsPlayer267267 {
+        static getName(): string { return 'player.[267,267]'; }
 
-        static getPNG(): string { return require('assets/spritesheets/monkey.[32,32].png'); }
-        static getFrameWidth(): number { return 32; }
-        static getFrameHeight(): number { return 32; }
+        static getPNG(): string { return require('assets/spritesheets/player.[267,267].png'); }
+        static getFrameWidth(): number { return 267; }
+        static getFrameHeight(): number { return 267; }
         static getFrameMax(): number { return -1; }
         static getMargin(): number { return 0; }
         static getSpacing(): number { return 0; }

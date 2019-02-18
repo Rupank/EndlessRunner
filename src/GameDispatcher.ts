@@ -77,10 +77,9 @@ export default class GameDispatcher {
         this.gameVars.mangoGroup = this.phaserGame.add.group();
         this.gameVars.mangoGroup.enableBody = true;
 
-        let style = { font: 'bold 32px Arial', fill: '#ffff33', boundsAlignH: 'center', boundsAlignV: 'middle' };
+        let style = { font: 'normal 28px ' + Assets.CustomWebFonts.FontsGameOver.getFamily(), fill: '#ffff33', boundsAlignH: 'center', boundsAlignV: 'middle' };
 
         this.gameVars.lvlText = this.phaserGame.add.text(this.phaserGame.world.width - 40, 0, '0', style);
-        this.gameVars.lvlText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 
         // INSTANITATE GAME OBJECTS
         this.soundService = new SoundService(this);

@@ -17,8 +17,8 @@ export default class Coins extends GameObject {
      */
     constructor(gameDispatcher: GameDispatcher) {
         super(gameDispatcher);
-        this.sprite = this.phaserGame.add.sprite(this.phaserGame.world.width - 75, 5, Assets.Images.ImagesMango.getName());
-        this.sprite.scale.set(0.6, 0.6);
+        this.sprite = this.phaserGame.add.sprite(this.phaserGame.world.width - 75, -3, Assets.Images.ImagesMango.getName());
+        this.sprite.scale.set(0.2, 0.2);
     }
 
 }

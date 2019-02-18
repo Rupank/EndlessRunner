@@ -56,7 +56,7 @@ module.exports = {
             }
         }),
         new HtmlWebpackPlugin({
-            title: 'Catch Mangoes',
+            title: 'Mango Rush',
             template: path.join(__dirname, 'templates/index.ejs')
         })
     ],
