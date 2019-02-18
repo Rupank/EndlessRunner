@@ -29,7 +29,7 @@ export default class Boot extends Phaser.State {
         if (this.game.device.desktop) { // desktop specific stuff
             // ...
         } else { // mobile specific stuff
-            this.game.scale.forceOrientation(true, false); // force landscape
+            // this.game.scale.forceOrientation(true, false); // force landscape
         }
 
         // Use DEBUG to wrap code that should only be included in a DEBUG build of the game
