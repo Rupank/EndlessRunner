@@ -31,7 +31,7 @@ export default class Player extends GameObject {
         this.sprite.animations.add('turn', [0, 1, 2, 3], 8, false);
         this.sprite.animations.add('grab', [10], 8, false);
         this.sprite.animations.add('right', [8, 9, 10], 8, true);
-        this.sprite.animations.add('jump', [4, 5, 6, 8], 8, false);
+        this.sprite.animations.add('jump', [4, 5, 6, 8, 9], 8, false);
         this.sprite.body.collideWorldBounds = true;
         this.sprite.play('right');
         this.alive = true;
@@ -87,18 +87,16 @@ export default class Player extends GameObject {
     public hitMango(player, mango) {
         if (!this.alive)
             return;
-        this.sprite.animations.play('grab');
+        this.sprite.animations.play('grab').onComplete.add(() => {
+            if (this.alive) {
+                this.sprite.animations.play('right');
+            }
+        });
         mango.destroy();
         this.gameDispatcher.gameVars.levelCoin += 1;
         // this.sprite.body.enable = false;
         this.gameDispatcher.soundService.playPointsMusic();
         this.gameDispatcher.gameVars.lvlText.setText(this.gameDispatcher.gameVars.levelCoin.toString());
-        setTimeout(() => {
-            if (this.alive) {
-                this.sprite.animations.play('right');
-            }
-        }, 500);
-        // Set the alive property of the bird to false
     }
 
     public startGameOver(): void {
@@ -110,7 +108,10 @@ export default class Player extends GameObject {
         if (!this.alive) {
             return;
         }
-        this.sprite.play('jump');
+        this.sprite.play('jump').onComplete.add(() => {
+            if (this.alive)
+                this.sprite.play('right');
+        });
         this.gameDispatcher.soundService.playJumpMusic();
         this.sprite.body.velocity.y = -350;
     }

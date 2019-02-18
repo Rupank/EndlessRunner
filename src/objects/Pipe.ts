@@ -51,11 +51,10 @@ export default class Pipe extends GameObject {
             }
         let yPos = this.phaserGame.rnd.integerInRange(Math.min(...array), Math.max(...array));
         this.addMangoOnScreen(this.phaserGame.world.width, yPos);
-
         this.velocity *= 1.06;
         this.gameDispatcher.gameVars.bg2Speed *= 1.06;
-        this.gameDispatcher.gameVars.bg3Speed *= 1.05;
-        this.gameDispatcher.gameVars.bg4Speed *= 1.04;
+        this.gameDispatcher.gameVars.bg3Speed *= 1.07;
+        this.gameDispatcher.gameVars.bg4Speed *= 1.09;
     }
 
     public addMangoOnScreen(x, y) {
